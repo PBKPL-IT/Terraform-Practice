@@ -11,21 +11,29 @@ resource "aws_s3_bucket" "pbkpl" {
     bucket = "pbkpl"
   
 }
-resource "aws_dynamodb_table" "terraform_lock" {
-  name         = "terraform-locks"
-  read_capacity = 20
-  write_capacity = 20
+#
 
-  attribute {
-    name = "LockID"
-    type = "S"
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.version.id
+  versioning_configuration {
+    status = "Enabled"
   }
-
-  hash_key = "LockID"
 }
+
+resource "aws_s3_bucket_public_access_block" "example" {
+  bucket = aws_s3_bucket.version.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+
+
 
 #note Developers Overwriting Each Other’s Work if separe state file for same project
 #Merge Conflicts in terraform.tfstate
 #If two developers run terraform apply at the same time, one may overwrite the other's changes, causing unexpected resource modifications.
-#both developers working independetly not collabrative 
+#both developers working independetly not collabrati ve 
 #solution: maintain common ststefile to overocme above issues 

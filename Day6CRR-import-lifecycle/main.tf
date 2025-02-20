@@ -2,15 +2,11 @@ resource "aws_instance" "name" {
   ami = "ami-0ddfba243cbee3768"
   instance_type = "t2.micro"
   key_name = "devopskey"
+  availability_zone = "ap-south-1a"
   tags = {
-    Name = "Dev"
+    Name = "life-cycle"
   }
-  
-}
-terraform {
-  backend "s3" {
-    bucket = "pbkpl"
-    key = "day4/terraform.tfstate"
-    region = "ap-south-1"
+  lifecycle {
+    create_before_destroy = true
   }
 }
