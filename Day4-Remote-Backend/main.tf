@@ -7,10 +7,13 @@ resource "aws_instance" "name" {
   }
   
 }
-terraform {
-  backend "s3" {
-    bucket = "pbkpl"
-    key = "day4/terraform.tfstate"
-    region = "ap-south-1"
+
+
+
+resource "aws_s3_bucket_versioning" "versions" {
+  bucket = aws_s3_bucket.name.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
+
