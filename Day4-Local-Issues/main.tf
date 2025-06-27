@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "pbkpl" {
 #
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.version.id
+  bucket = aws_s3_bucket.pbkpl.id
   versioning_configuration {
     status = "Enabled"
   }

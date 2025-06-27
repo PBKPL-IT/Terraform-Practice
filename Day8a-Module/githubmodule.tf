@@ -9,7 +9,7 @@
 #}
 module "db_parameter_group" {
   source  = "terraform-aws-modules/rds/aws//modules/db_parameter_group"
-  version = "5.0.0"
+  # version = "5.0.0"
 
   name   = "my-db-parameter-group"
   family = "postgres13"  # Set correct DB family based on your engine

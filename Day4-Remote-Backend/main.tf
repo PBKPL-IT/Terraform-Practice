@@ -7,7 +7,12 @@ resource "aws_instance" "name" {
   }
   
 }
-
+resource "aws_s3_bucket" "name" {
+  bucket = "pbkpl"
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 
 resource "aws_s3_bucket_versioning" "versions" {

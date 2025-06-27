@@ -3,6 +3,9 @@ data "archive_file" "lambda_zip" {
   source_file = "lambda_function.py"
   output_path = "lambda_function.zip"
 }
+ resource "aws_s3_bucket" "name" {
+   bucket = "prsnlakshmi"
+ }
 # Upload Lambda ZIP to S3
 resource "aws_s3_object" "lambda_code" {
   bucket = "prsnlakshmi"
